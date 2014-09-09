@@ -8,7 +8,7 @@ class Idea
 	  @description = attributes["description"]
 	  @rank 		   = attributes["rank"] || 0
 	  @id 				 = attributes["id"]
-	  @tags				 = split(attributes["tags"])
+	  @tags				 = split(attributes["tags"]).sort
 	end
 
 	def split(tag)
@@ -46,10 +46,6 @@ class Idea
 
 	def <=>(other)
 		other.rank <=> rank
-	end
-
-	def tag
-		"hello"
 	end
 
 end

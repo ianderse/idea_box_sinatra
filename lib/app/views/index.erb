@@ -17,14 +17,12 @@
 <ul>
   <% ideas.each do |idea| %>
     <li>
-
       Name: <%= idea.title %><br/>
       Description: <%= idea.description %><br/>
       Score: <%= idea.rank %><br/>
       Tags: <% idea.tags.each do |tag| %>
-            <a href="/<%= tag.delete(' ') %>"><%=tag%></a>
+            <a href="/<%= tag %>"><%=tag%></a>
             <% end %><br/>
-
 
       <a href="/<%= idea.id %>/edit">Edit</a>
       <form action='/<%= idea.id %>/like' method='POST' style="display: inline">
@@ -40,6 +38,10 @@
     </li>
   <% end %>
 </ul>
+
+<form action="/tag_sort" method="GET">
+  <input type="submit" value="Sort By Tags"/>
+</form>
 
 <form action="/" method="GET">
   <input type="submit" value="Home"/>

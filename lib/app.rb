@@ -20,6 +20,10 @@ class IdeaBoxApp < Sinatra::Base
     erb :edit, locals: {idea: idea}
   end
 
+  get '/tag_sort' do
+    erb :index, locals: {ideas: IdeaStore.all.sort_by {|idea| idea.tags[0]}, idea: Idea.new(params)}
+  end
+
   post '/' do
   	IdeaStore.create(params[:idea])
     redirect '/'
