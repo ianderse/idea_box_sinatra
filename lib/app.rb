@@ -1,10 +1,11 @@
 require 'bundler'
-require_relative 'idea_store'
+require 'idea_box'
 
 Bundler.require
 
 class IdeaBoxApp < Sinatra::Base
   set :method_override, true
+  set :root, 'lib/app'
 
   not_found do
     erb :error
