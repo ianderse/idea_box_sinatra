@@ -4,6 +4,12 @@ class Idea
 
 	attr_reader :title, :description
 
+	def self.delete(position)
+		database.transaction do
+			database['ideas'].delete_at(position)
+		end
+	end
+
 	def self.all
 	  raw_ideas.map do |data|
 	    new(data[:title], data[:description])

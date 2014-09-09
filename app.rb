@@ -4,9 +4,7 @@ require_relative 'idea'
 Bundler.require
 
 class IdeaBoxApp < Sinatra::Base
-	configure :development do
-    register Sinatra::Reloader
-  end
+  set :method_override, true
 
   not_found do
     erb :error
@@ -21,5 +19,10 @@ class IdeaBoxApp < Sinatra::Base
   	idea.save
     redirect '/'
 	end
+
+  delete '/:id' do |id|
+    Idea.delete(id.to_i)
+    redirect '/'
+  end
 
 end
