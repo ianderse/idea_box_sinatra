@@ -32,6 +32,17 @@ class IdeaBoxApp < Sinatra::Base
     redirect '/'
   end
 
+  post '/:id/dislike' do |id|
+    idea = IdeaStore.find(id.to_i)
+    idea.dislike!
+    IdeaStore.update(id.to_i, idea.to_h)
+    redirect '/'
+  end
+
+  get '/:tag' do |tag|
+    erb :index, locals: {ideas: IdeaStore.all.find_all {|idea| idea.tags.include?(tag)}, idea: Idea.new(params)}
+  end
+
   put '/:id' do |id|
     IdeaStore.update(id.to_i, params[:idea])
     redirect '/'

@@ -1,13 +1,26 @@
 class Idea
 	include Comparable
 
-	attr_reader :title, :description, :rank, :id
+	attr_reader :title, :description, :rank, :id, :tags
 
 	def initialize(attributes = {})
 	  @title 			 = attributes["title"]
 	  @description = attributes["description"]
 	  @rank 		   = attributes["rank"] || 0
 	  @id 				 = attributes["id"]
+	  @tags				 = split(attributes["tags"])
+	end
+
+	def split(tag)
+		if tag.is_a?(Array)
+			tag
+		elsif tag.nil?
+			[]
+		elsif tag.empty?
+			[]
+		else
+			tag.delete(' ').split(',')
+		end
 	end
 
 	def save
@@ -19,7 +32,7 @@ class Idea
 			"title" => title,
 			"description" => description,
 			"rank" => rank,
-			"id" => id
+			"tags" => tags
 		}
 	end
 
@@ -27,8 +40,16 @@ class Idea
 		@rank += 1
 	end
 
+	def dislike!
+		@rank -= 1
+	end
+
 	def <=>(other)
 		other.rank <=> rank
+	end
+
+	def tag
+		"hello"
 	end
 
 end
