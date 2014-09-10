@@ -9,7 +9,17 @@
   <textarea name='idea[description]'></textarea><br/>
   Tags:
   <textarea name='idea[tags]'></textarea><br/>
+  Group:
+  <select name="idea[group]">
+    <% groups.each do |group| %>
+      <option value="<%= group["name"] %>"><%= group["name"] %></option>
+    <% end %>
+  </select>
   <input type='submit'/>
+</form>
+
+<form action="/groups" method="GET">
+  <input type="submit" value="Edit Groups"/>
 </form>
 
 <h3>Existing Ideas</h3>
@@ -21,8 +31,9 @@
       Description: <%= idea.description %><br/>
       Score: <%= idea.rank %><br/>
       Tags: <% idea.tags.each do |tag| %>
-            <a href="/<%= tag %>"><%=tag%></a>
+            <a href="/tag/<%= tag %>"><%=tag%></a>
             <% end %><br/>
+      Group: <a href="/group/<%= idea.group %>"><%=idea.group%></a><br/>
 
       <a href="/<%= idea.id %>/edit">Edit</a>
       <form action='/<%= idea.id %>/like' method='POST' style="display: inline">
@@ -41,8 +52,4 @@
 
 <form action="/tag_sort" method="GET">
   <input type="submit" value="Sort By Tags"/>
-</form>
-
-<form action="/" method="GET">
-  <input type="submit" value="Home"/>
 </form>

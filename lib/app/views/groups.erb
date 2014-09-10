@@ -1,0 +1,20 @@
+<h1>Edit Groups</h1>
+<% groups.each do |group| %>
+  <form action='/update_groups' method='POST'>
+
+      Group: <input type='text' name='group[name]' value="<%= group["name"] %>"/><br/>
+      ID:    <input type='text' name='group[id]' value="<%= group["id"] %>"/><br/>
+    <input type='submit'/>
+  </form>
+<% end %>
+
+<form action='/groups' method='POST'>
+  <p>
+  <h1>New Group:</h1>
+  </p>
+  Name:
+  <input type='text' name='group[name]'/><br/>
+  ID:
+  <input type='text' name='group[id]'/><br/>
+  <input type='submit'/>
+</form>

@@ -4,6 +4,44 @@ require_relative 'idea'
 
 class IdeaStore
 
+	def self.all_groups
+		groups = []
+	  raw_groups.each do |data|
+	    groups << data
+	  end
+	end
+
+	def self.raw_groups
+	  group_database.transaction do |db|
+	    db['groups'] || []
+	  end
+	end
+
+	def self.group_database
+		return @group_database if @group_database
+
+    @group_database = YAML::Store.new("db/ideabox")
+    @group_database.transaction do
+    	@group_database['groups'] ||= []
+    end
+    @group_database
+  end
+
+  def self.create_group(data)
+  	group_database.transaction do
+  		group_database['groups'] << data
+  	end
+  end
+
+	def self.update_groups(data)
+		id = data["id"].to_i - 1
+		name = data["name"]
+		group_database.transaction do
+			group_database['groups'][id]["name"] = name
+			# group_database['groups'][id]["id"] = id + 1
+		end
+	end
+
 	def self.create(data)
 		database.transaction do
 			database['ideas'] << data

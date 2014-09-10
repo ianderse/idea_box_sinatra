@@ -14,5 +14,10 @@
   Name: <input type='text' name='idea[title]' value="<%= idea.title %>"/><br/>
   Description: <textarea name='idea[description]'><%= idea.description %></textarea><br/>
   Tags: <textarea name='idea[tags]'><%= idea.tags.join(',') %></textarea><br/>
+  Group: <select name="idea[group]">
+			    <% groups.each do |group| %>
+			      <option value="<%= group["name"] %>"><%= group["name"] %></option>
+			    <% end %>
+			  </select>
   <input type='submit'/>
 </form>

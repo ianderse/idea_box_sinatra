@@ -2,10 +2,26 @@
 ideas:
 - title: asdfw
   description: fwef
-  tags: aa
+  tags: aa, bb
+  group: Default
 - title: afwef
   description: asdf
   tags: bb, aa
+  group: Default
 - title: a1
   description: afaf
   tags: a1
+  group: Default
+- title: fwefwef
+  description: fafaa
+  tags: wef
+  group: Default
+- title: fwefwef
+  description: aaa
+  tags: wef
+  group: Test
+groups:
+- name: Default
+  id: 1
+- name: Test
+  id: '2'
