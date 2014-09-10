@@ -1,55 +1,69 @@
 <h1>IdeaBox</h1>
-<form action='/' method='POST'>
-  <p>
-  Your Idea:
-  </p>
-  Name:
-  <input type='text' name='idea[title]'/><br/>
-  Description:
-  <textarea name='idea[description]'></textarea><br/>
-  Tags:
-  <textarea name='idea[tags]'></textarea><br/>
-  Group:
-  <select name="idea[group]">
-    <% groups.each do |group| %>
-      <option value="<%= group["name"] %>"><%= group["name"] %></option>
-    <% end %>
-  </select>
-  <input type='submit'/>
-</form>
 
-<form action="/groups" method="GET">
-  <input type="submit" value="Edit Groups"/>
-</form>
+<section id = "new-idea">
+  <section id = "new-idea-text">
+    <h3>New Idea</h3>
+    <form action='/' method='POST'>
+      <section id = "field-name">Name:</section>
+      <input id="text-field" type='text' name='idea[title]'/><br/>
+      <section id = "field-name">Description:</section>
+      <textarea id="text-field" name='idea[description]'></textarea><br/>
+      <section id = "field-name">Tags:</section>
+      <textarea id="text-field" name='idea[tags]'></textarea><br/>
+      <section id = "field-name">Group:</section>
+      <select id="text-field" name="idea[group]">
+        <% groups.each do |group| %>
+          <option value="<%= group["name"] %>"><%= group["name"] %></option>
+        <% end %>
+      </select>
+      <input id="text-field" type='submit'/>
+    </form>
+  </section>
+</section>
 
-<h3>Existing Ideas</h3>
+<section id="existing-ideas">
+  <h3>Existing Ideas</h3>
 
-<ul>
-  <% ideas.each do |idea| %>
-    <li>
-      Name: <%= idea.title %><br/>
-      Description: <%= idea.description %><br/>
-      Score: <%= idea.rank %><br/>
-      Tags: <% idea.tags.each do |tag| %>
-            <a href="/tag/<%= tag %>"><%=tag%></a>
-            <% end %><br/>
-      Group: <a href="/group/<%= idea.group %>"><%=idea.group%></a><br/>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Score</th>
+      <th>Tags</th>
+      <th>Group</th>
+      <th>Options</th>
+    </tr>
+      <% ideas.each do |idea| %>
+        <tr>
+          <td><%= idea.title %></td>
+          <td><%= idea.description %></td>
+          <td><%= idea.rank %></td>
+          <td>
+            <% idea.tags.each do |tag| %>
+              <a href="/tag/<%= tag %>"><%=tag%></a>
+            <% end %>
+          </td>
+          <td><a href="/group/<%= idea.group %>"><%=idea.group%></a></td>
+          <td id="edit_button"><a href="/<%= idea.id %>/edit">Edit</a>
+            <form action='/<%= idea.id %>/like' method='POST' style="display: inline">
+              <input id="option-button" type='submit' value="+"/>
+            </form>
+            <form action='/<%= idea.id %>/dislike' method='POST' style="display: inline">
+              <input id="option-button"type='submit' value="-"/>
+            </form>
+            <form action="/<%= idea.id %>" method="POST" style="display: inline">
+              <input id="option-button" type="hidden" name="_method" value="DELETE">
+              <input id="option-button" type="submit" value="delete"/>
+            </form></td>
+        </tr>
+      <% end %>
+  </table>
 
-      <a href="/<%= idea.id %>/edit">Edit</a>
-      <form action='/<%= idea.id %>/like' method='POST' style="display: inline">
-        <input type='submit' value="+"/>
-      </form>
-      <form action='/<%= idea.id %>/dislike' method='POST' style="display: inline">
-        <input type='submit' value="-"/>
-      </form>
-      <form action="/<%= idea.id %>" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="delete"/>
-      </form>
-    </li>
-  <% end %>
-</ul>
+  <form id="bottom-button" action="/groups" method="GET">
+    <a href="/groups" class="button">Edit Groups</a>
+  </form>
 
-<form action="/tag_sort" method="GET">
-  <input type="submit" value="Sort By Tags"/>
-</form>
+  <form id="bottom-button" style = "padding-bottom:25px" action="/tag_sort" method="GET">
+    <a href="/tag_sort" class="button">Sort By Tags</a>
+  </form>
+</section>

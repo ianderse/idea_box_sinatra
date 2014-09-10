@@ -1,0 +1,92 @@
+body {
+	background-color: #26596A;
+	color: #91ABB3;
+}
+
+#container {
+	margin-left: 50px;
+	width: 750px;
+}
+
+#new-idea {
+	position:fixed;
+	top: 75px;
+	right: 0;
+	width: 400px;
+	margin-right:25px;
+	border-left: thin dotted #91ABB3;
+}
+
+#new-idea-text {
+	margin-left:50px;
+}
+
+#existing-ideas {
+	border-bottom: thin dotted #91ABB3;
+}
+
+#bottom-button {
+	margin-top: 25px
+}
+
+.button {
+position: relative;
+display: block;
+margin: 1px;
+height: 24px;
+font-size: 12px;
+line-height: 24px;
+text-decoration: none;
+text-transform: uppercase;
+text-align: center;
+background: #104050;
+color: #91ABB3;
+}
+
+#text-field {
+	background-color: #6C939F;
+	border: 0px;
+	position:relative;
+}
+
+#field-name {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	position:relative;
+	left:0;
+	margin-right: 50px;
+}
+
+#option-button {
+	background-color: #6C939F;
+	border: 0px;
+}
+
+#option-button:hover {
+	background-color: #104050;
+}
+
+table {
+	width:100%;
+}
+th, td {
+  border: 1px solid #022835;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h1 {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+a {
+	color: #6C939F;
+	text-decoration: none;
+}
+
+a:hover {
+	background-color: #6C939F;
+	color: #104050;
+}

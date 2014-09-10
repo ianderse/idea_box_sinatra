@@ -2,24 +2,34 @@
 ideas:
 - title: asdfw
   description: fwef
-  tags: aa, bb
+  rank: 5
+  tags:
+  - aa
+  - bb
+  - cc
   group: Default
 - title: afwef
   description: asdf
-  tags: bb, aa
-  group: Default
+  rank: 0
+  tags:
+  - aa
+  - bb
+  - cc
+  - dd
+  - ee
+  group: Test
 - title: a1
   description: afaf
-  tags: a1
+  rank: 3
+  tags:
+  - a1
   group: Default
 - title: fwefwef
   description: fafaa
-  tags: wef
+  rank: 4
+  tags:
+  - wef
   group: Default
-- title: fwefwef
-  description: aaa
-  tags: wef
-  group: Test
 groups:
 - name: Default
   id: 1
