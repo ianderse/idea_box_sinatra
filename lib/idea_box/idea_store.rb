@@ -1,7 +1,6 @@
 require 'yaml/store'
 require_relative 'idea'
 
-
 class IdeaStore
 
 	def self.all_groups
@@ -21,9 +20,11 @@ class IdeaStore
 		return @group_database if @group_database
 
     @group_database = YAML::Store.new("db/ideabox")
+
     @group_database.transaction do
     	@group_database['groups'] ||= []
     end
+
     @group_database
   end
 
@@ -39,6 +40,12 @@ class IdeaStore
 		group_database.transaction do
 			group_database['groups'][id]["name"] = name
 			# group_database['groups'][id]["id"] = id + 1
+		end
+	end
+
+	def self.delete_group(group)
+		group_database.transaction do
+			group_database['groups'].delete_at(group.to_i-1)
 		end
 	end
 
@@ -86,12 +93,14 @@ class IdeaStore
 	end
 
 	def self.database
-		return @database if @database
+     return @database if @database
 
-    @database = YAML::Store.new("db/ideabox")
+    @database = YAML::Store.new('db/ideabox')
+
     @database.transaction do
     	@database['ideas'] ||= []
     end
     @database
-  end
+   end
+
 end

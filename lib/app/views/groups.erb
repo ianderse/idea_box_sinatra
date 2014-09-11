@@ -1,20 +1,34 @@
-<h1>Edit Groups</h1>
-<% groups.each do |group| %>
-  <form action='/update_groups' method='POST'>
+<section id="existing-groups">
+  <h1>Edit Groups</h1>
+    <% groups.each do |group| %>
+    <form action='/update_groups' method='POST'>
+      <section id = "field-name"> Group: </section>
+      <input id="text-field" type='text' name='group[name]' value="<%= group["name"] %>"/><br/>
+      <section id = "field-name">ID:</section>
+      <input id="text-field" type='text' name='group[id]' value="<%= group["id"] %>"/><br/>
+      <input type="hidden" name="groups[user]" value="<%=user%>">
+      <input style="margin-bottom:25px" id="submit-button" type='submit'/>
+    </form>
+    <form action="/groups/<%= group["id"] %>" method="POST" style="display: inline">
+              <input type="hidden" name="delete[user]" value="<%=user%>">
+              <input id="option-button" type="hidden" name="_method" value="DELETE">
+              <input id="option-button" type="submit" value="delete"/>
+    </form>
+  <% end %>
+</section>
 
-      Group: <input type='text' name='group[name]' value="<%= group["name"] %>"/><br/>
-      ID:    <input type='text' name='group[id]' value="<%= group["id"] %>"/><br/>
-    <input type='submit'/>
+<section id="new-group">
+  <form action='/groups' method='POST'>
+    <p>
+    <h2 >New Group</h2>
+    </p>
+    <section id = "new-group-form">
+      <section id = "field-name" style="margin-top:25px"> Name: </section>
+      <input id="text-field" type='text' name='group[name]'/><br/>
+      <section id = "field-name">ID:</section>
+      <input id="text-field" type='text' name='group[id]'/><br/>
+      <input type="hidden" name="groups[user]" value="<%=user%>">
+      <input id="submit-button" type='submit'/>
+    </section>
   </form>
-<% end %>
-
-<form action='/groups' method='POST'>
-  <p>
-  <h1>New Group:</h1>
-  </p>
-  Name:
-  <input type='text' name='group[name]'/><br/>
-  ID:
-  <input type='text' name='group[id]'/><br/>
-  <input type='submit'/>
-</form>
+</section>

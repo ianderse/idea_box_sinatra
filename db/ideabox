@@ -1,37 +1,39 @@
 ---
 ideas:
-- title: asdfw
-  description: fwef
-  rank: 5
+- title: asdfwef
+  description: wfwfadf
+  rank: 2
   tags:
-  - aa
-  - bb
-  - cc
+  - wefwef
   group: Default
-- title: afwef
-  description: asdf
-  rank: 0
-  tags:
-  - aa
-  - bb
-  - cc
-  - dd
-  - ee
-  group: Test
-- title: a1
-  description: afaf
-  rank: 3
-  tags:
-  - a1
+  user: ''
+- title: tests
+  description: asdfa
+  tags: wef
+  user: asdf
   group: Default
-- title: fwefwef
-  description: fafaa
-  rank: 4
+- title: tests
+  description: asdfa
+  rank: 1
   tags:
   - wef
   group: Default
+  user: asdf
+- title: fffef
+  description: asd
+  tags: asdf
+  user: feef
+  group: Group 1
+- title: asef
+  description: asdf
+  tags: wef
+  user: asdf
+  group: Default
+- title: ''
+  description: ''
+  tags: ''
+  user: asdf
+  group: Default
 groups:
 - name: Default
-  id: 1
-- name: Test
-  id: '2'
+  id: '1'

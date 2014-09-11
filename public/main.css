@@ -3,26 +3,66 @@ body {
 	color: #91ABB3;
 }
 
+.truncate {
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.display-idea-item {
+	margin-right: 25px;
+	margin-left: 25px;
+	overflow-wrap: break-word;
+	font-size: 115%;
+}
+
 #container {
 	margin-left: 50px;
 	width: 750px;
+	border-right: thin dotted #91ABB3;
+}
+
+#existing-groups {
+	border-bottom: thin dotted #91ABB3;
+	margin-right: 25px;
+}
+
+#new-group {
+	position:fixed;
+	top: 25px;
+	left: 835px;
+	width: 400px;
+	margin-right:25px;
 }
 
 #new-idea {
 	position:fixed;
-	top: 75px;
-	right: 0;
+	top: 25px;
+	left: 785px;
 	width: 400px;
 	margin-right:25px;
-	border-left: thin dotted #91ABB3;
 }
 
 #new-idea-text {
 	margin-left:50px;
 }
 
+#new-idea-text h2 {
+
+}
+
+#new-idea-form {
+	border-top:thin dotted #91ABB3;
+}
+
+#new-group-form {
+	border-top:thin dotted #91ABB3;
+}
+
 #existing-ideas {
 	border-bottom: thin dotted #91ABB3;
+		margin-right: 25px;
 }
 
 #bottom-button {
@@ -47,6 +87,17 @@ color: #91ABB3;
 	background-color: #6C939F;
 	border: 0px;
 	position:relative;
+}
+
+#submit-button {
+	margin-top: 10px;
+	background-color: #6C939F;
+	border: 0px;
+	position:relative;
+}
+
+#submit-button:hover {
+	background-color: #104050;
 }
 
 #field-name {
@@ -89,4 +140,8 @@ a {
 a:hover {
 	background-color: #6C939F;
 	color: #104050;
+}
+
+#display-item {
+	text-wrap: normal;
 }

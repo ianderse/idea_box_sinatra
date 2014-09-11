@@ -1,28 +1,41 @@
 <h1>IdeaBox</h1>
 
+<% if user == '' %>
+  <div><h3><a href="/register">Register</a>/<a href="/login">Login</a></h3></div>
+<% else %>
+  Welcome <%= user %> <div style="font-size:150%; margin-top:15px"><a href="/myideas?name=<%=user%>">My Ideas</a> <a href="/">Logout</a></div>
+<% end %>
+
 <section id = "new-idea">
   <section id = "new-idea-text">
-    <h3>New Idea</h3>
-    <form action='/' method='POST'>
-      <section id = "field-name">Name:</section>
+    <h2 >New Idea</h2>
+    <form id="new-idea-form"action='/' method='POST'>
+      <section id = "field-name" style="margin-top:25px">Name:</section>
       <input id="text-field" type='text' name='idea[title]'/><br/>
       <section id = "field-name">Description:</section>
       <textarea id="text-field" name='idea[description]'></textarea><br/>
       <section id = "field-name">Tags:</section>
       <textarea id="text-field" name='idea[tags]'></textarea><br/>
+      <input type="hidden" name="idea[user]" value="<%=user%>">
       <section id = "field-name">Group:</section>
       <select id="text-field" name="idea[group]">
         <% groups.each do |group| %>
           <option value="<%= group["name"] %>"><%= group["name"] %></option>
         <% end %>
       </select>
-      <input id="text-field" type='submit'/>
+      <input id="submit-button" type='submit'/>
     </form>
   </section>
 </section>
 
 <section id="existing-ideas">
   <h3>Existing Ideas</h3>
+
+  <section style= "float:right">
+    <form style="margin-bottom:25px" action='/search' method='GET'>
+    Search: <input id="text-field" type='text' name='search[query]'/><input id="submit-button" type="submit"/><input type="hidden" name="search[user]" value="<%=user%>"><br/>
+    </form>
+  </section>
 
   <table>
     <tr>
@@ -35,23 +48,26 @@
     </tr>
       <% ideas.each do |idea| %>
         <tr>
-          <td><%= idea.title %></td>
-          <td><%= idea.description %></td>
+          <td><div class="truncate" style="width:50px"><a href="/<%=idea.id%>?name=<%=user%>"><%= idea.title %></a></div></td>
+          <td><div class="truncate"><%= idea.description %></div></td>
           <td><%= idea.rank %></td>
           <td>
             <% idea.tags.each do |tag| %>
-              <a href="/tag/<%= tag %>"><%=tag%></a>
+              <a href="/tag/<%= tag %>?name=<%=user%>"><%=tag%></a>
             <% end %>
           </td>
-          <td><a href="/group/<%= idea.group %>"><%=idea.group%></a></td>
-          <td id="edit_button"><a href="/<%= idea.id %>/edit">Edit</a>
+          <td><a href="/group/<%= idea.group %>?name=<%=user%>"><%=idea.group%></a></td>
+          <td><a style="margin-right:5px" href="/<%= idea.id %>/edit?name=<%=user%>">Edit</a>
             <form action='/<%= idea.id %>/like' method='POST' style="display: inline">
+              <input type="hidden" name="like[user]" value="<%=user%>">
               <input id="option-button" type='submit' value="+"/>
             </form>
             <form action='/<%= idea.id %>/dislike' method='POST' style="display: inline">
+              <input type="hidden" name="dislike[user]" value="<%=user%>">
               <input id="option-button"type='submit' value="-"/>
             </form>
             <form action="/<%= idea.id %>" method="POST" style="display: inline">
+              <input type="hidden" name="delete[user]" value="<%=user%>">
               <input id="option-button" type="hidden" name="_method" value="DELETE">
               <input id="option-button" type="submit" value="delete"/>
             </form></td>
@@ -60,10 +76,10 @@
   </table>
 
   <form id="bottom-button" action="/groups" method="GET">
-    <a href="/groups" class="button">Edit Groups</a>
+    <a href="/groups?name=<%=user%>" class="button">Edit Groups</a>
   </form>
 
   <form id="bottom-button" style = "padding-bottom:25px" action="/tag_sort" method="GET">
-    <a href="/tag_sort" class="button">Sort By Tags</a>
+    <a href="/tag_sort?name=<%=user%>" class="button">Sort By Tags</a>
   </form>
 </section>

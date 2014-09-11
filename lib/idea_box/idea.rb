@@ -1,7 +1,7 @@
 class Idea
 	include Comparable
 
-	attr_reader :title, :description, :rank, :id, :tags, :group
+	attr_reader :title, :description, :rank, :id, :tags, :group, :user
 
 	def initialize(attributes = {})
 	  @title 			 = attributes["title"]
@@ -10,15 +10,17 @@ class Idea
 	  @id 				 = attributes["id"]
 	  @tags				 = split(attributes["tags"]).sort
 	  @group       = attributes["group"]
+	  @user				 = attributes["user"] || ''
 	end
 
 	def split(tag)
-		if tag.is_a?(Array)
-			tag
-		elsif tag.nil?
-			[]
+
+		if tag.nil?
+			['']
 		elsif tag.empty?
-			[]
+			['']
+		elsif tag.is_a?(Array)
+			tag
 		else
 			tag.delete(' ').split(',')
 		end
@@ -34,7 +36,8 @@ class Idea
 			"description" => description,
 			"rank" => rank,
 			"tags" => tags,
-			"group" => group
+			"group" => group,
+			"user"  => user
 		}
 	end
 
