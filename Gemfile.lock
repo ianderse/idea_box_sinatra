@@ -16,5 +16,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  rack
   shotgun
   sinatra

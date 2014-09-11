@@ -2,10 +2,3 @@
 users:
 - name: ian
   password: test
-- name: test
-  password: test
-- name: test
-  password: test
-- name: test
-  password: test
-- name: ian
