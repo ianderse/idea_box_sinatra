@@ -31,22 +31,26 @@ describe IdeaBoxApp do
     assert_equal "Edit Groups", html.css('h1').text
   end
 
-  # it "tells you look nice today" do
-  #   get '/'
+  it "can search my ideas"
+  it "can display existing ideas"
+
+  it "gives me a form to add a new idea" do
+    get '/'
+
+    html = Nokogiri::HTML(last_response.body)
+
+    assert html.at_css('form[action="/"]').at_css('textarea[name="idea[description]"]')
+  end
+
+
+  # it "can create an idea" do
+  #   post '/', { idea: { description: 'some description', title: 'some title'}}
   #   html = Nokogiri::HTML(last_response.body)
 
   #   assert last_response.ok?
-  #   assert_equal "You look nice today!", html.css('.message').text
+  #   assert_equal "test_title", html.css('table').text
   # end
 
-  it "can create an idea" do
-    post '/', :title =>"test_title", :description =>"test_description", :tags =>"test_tag", :group => "Default"
-    html = Nokogiri::HTML(last_response.body)
-
-    assert last_response.ok?
-    assert_equal "test_title", html.css('table').text
-  end
-
-  Minitest.after_run { File.delete('../db/ideabox-test') }
+  #Minitest.after_run { File.delete('../db/ideabox-test') }
 
 end

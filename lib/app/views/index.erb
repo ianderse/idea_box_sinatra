@@ -48,7 +48,7 @@
     </tr>
       <% ideas.each do |idea| %>
         <tr>
-          <td><div class="truncate" style="width:50px"><a href="/<%=idea.id%>?name=<%=user%>"><%= idea.title %></a></div></td>
+          <td><div class="truncate" style="width:100px"><a href="/<%=idea.id%>?name=<%=user%>"><%= idea.title %></a></div></td>
           <td><div class="truncate"><%= idea.description %></div></td>
           <td><%= idea.rank %></td>
           <td>

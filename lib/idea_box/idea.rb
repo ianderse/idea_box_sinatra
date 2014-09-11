@@ -26,10 +26,6 @@ class Idea
 		end
 	end
 
-	def save
-		IdeaStore.create(to_h)
-	end
-
 	def to_h
 		{
 			"title" => title,
