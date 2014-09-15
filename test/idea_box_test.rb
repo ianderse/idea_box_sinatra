@@ -32,6 +32,7 @@ describe IdeaBoxApp do
   end
 
   it "can search my ideas"
+
   it "can display existing ideas"
 
   it "gives me a form to add a new idea" do

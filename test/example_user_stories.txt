@@ -1,0 +1,18 @@
+As an authenticated user,
+when I'm on the homepage add title and description in new idea field
+and I click submit
+Then I return to homepage with new idea listed.
+
+As a visitor,
+When I click the register link,
+and I enter username and password,
+Then I return to homepage logged in.
+
+As a visitor,
+when I click on the login link
+and I enter username and password,
+Then I return to homepage logged in.
+
+As an authenticated user,
+when I view the existing ideas,
+I can see only my ideas.

@@ -12,6 +12,10 @@ class IdeaBoxApp < Sinatra::Base
     erb :error
   end
 
+  # get '/db' do
+  #   erb :db, layout: false
+  # end
+
   get '/' do
     erb :index, locals: {groups: IdeaStore.all_groups, ideas: IdeaStore.all.sort, idea: Idea.new(params), user: params.fetch("name", '')}
   end
