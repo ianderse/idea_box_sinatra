@@ -1,5 +1,9 @@
 require 'bundler'
+require 'redis'
+require 'json'
 require_relative './idea_box'
+
+$redis = Redis.new
 
 Bundler.require
 
@@ -87,7 +91,12 @@ class IdeaBoxApp < Sinatra::Base
   end
 
   post '/' do
-  	IdeaStore.create(params[:idea])
+  	# IdeaStore.create(params[:idea])
+    # raise params[:idea][:title].to_json.inspect
+    # raise params.inspect
+    # $redis.publish :community, {title: params[:idea][:title]}.to_json
+    $redis.publish :community, params.to_json
+
     redirect "/?name=#{params[:idea][:user]}"
 	end
 
